@@ -1,0 +1,54 @@
+.App-logo {
+    pointer-events: none;
+  }
+  
+  @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin 0.75s 2 ease alternate;
+    }
+  }
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(15deg);
+    }
+  }
+  Nav{
+    text-align: right;
+    border: 1px solid white;
+  }
+  .Space{
+    min-width: 7vw;
+  }
+  .App-header {
+    background-color: #006bb4;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    margin-bottom: 40px;
+  }
+  .App-header .landing-container-logo-wrapper {
+    
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    position: relative;
+    top: 2rem;
+    padding: 0.3rem;
+    margin: 0 auto 10px;
+    height: 70px;
+    width: 70px;
+    border-radius: 46px;
+    -webkit-box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
+    box-shadow: 0 4px 8px rgb(0 0 0 / 20%);
+    background: #fff;
+  }
