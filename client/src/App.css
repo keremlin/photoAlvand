@@ -29,7 +29,58 @@
 .App-link {
   color: rgb(112, 76, 182);
 }
+.crouselUI{
+  height:40vh;
+}
+.vh-55{
+  width: 100%;
+}
+.col-centered{
+  float: none;
+  margin: 0 auto;
+}
+.minHeight200{
+  min-height: 200px;
+}
+.footerUI{
+  color:white;
 
+}
+.opacity40{
+  opacity: 0.4;
+  background-size:  cover;
+}
+.tales {
+  width: 100%;
+}
+.carousel-inner{
+  width:100%;
+  max-height: 400px !important;
+}
+.carousel-caption{
+top: 210px;
+font-size: calc(16px + 2vmin);
+color:black;
+background: rgba(238, 243, 238, 0.55);
+border-radius: 20px 20px 0 0;
+}
+@media screen and (max-width:500px) {
+  .carousel-caption{
+    top: 50px;
+    font-size: calc(13px + 2vmin);
+  }
+  .carousel-caption h3{
+    font-size: calc(17px + 2vmin);
+    color:black;
+  }
+}
+.carousel-caption h3{
+  font-size: calc(35px + 2vmin);
+  color:black;
+}
+.carousel-caption p{
+  color:black;
+}
 @keyframes App-logo-float {
   0% {
     transform: translateY(0);
