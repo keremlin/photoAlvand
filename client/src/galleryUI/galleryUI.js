@@ -8,9 +8,13 @@ import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 
 export default function GalleryUI() {
+  let colsNumber=5;
+  if(window.innerWidth<479)
+    colsNumber=2;
+    else
+    colsNumber=5;
   return (
-    <ImageList variant="masonry" cols={5} gap={2} >
-      
+    <ImageList variant="masonry" cols={colsNumber} gap={2} >
       {itemData.map((item) => (
         <ImageListItem key={item.img}>
           <img
