@@ -15,14 +15,15 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import pic from './../img/13.jpg'
+import pic from './../img/babataher.jpg'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 250,
     flexGrow: 1,
-        padding: theme.spacing(2)
-    
+    padding: theme.spacing(1),
+    margin: "auto"
+
   },
   media: {
     height: 0,
@@ -42,13 +43,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: red[500],
   },
   title:{
-    fontFamily: [
-        'Yekan',
-      ].join(','),
+    fontFamily: 
+        'Yekan'
+     ,
   }
 }));
 
 export default function CardUI() {
+  
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -57,25 +59,17 @@ export default function CardUI() {
   };
 
   return (
+    
     <Card className={classes.root}>
-      <CardHeader
-       
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title="علی کریمی "
-        subheader="بهمن 14, ۱۳۹۹"
-      />
+      
       <CardMedia
         className={classes.media}
         image={pic}
-        title="Paella dish"
+        title="فتو الوند"
       />
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect 
+        <Typography injectFirst className={clsx(classes.title)} variant="body2" color="textSecondary" component="p">
+          بهترین منتخب عکس روز 
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

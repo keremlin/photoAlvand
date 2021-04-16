@@ -1,0 +1,9 @@
+.footerUI{
+    color:white;
+  }
+  .minHeight200{
+    min-height: 200px;
+  }
+  .footerP{
+      font-size: calc(20px + 2vmin);
+  }

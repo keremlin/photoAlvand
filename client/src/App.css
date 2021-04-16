@@ -26,6 +26,9 @@
   color:rgba(238, 25, 25, 0.904);
 }
 
+.fontFamilyFarsi{
+  font-family: Yekan;
+}
 .App-link {
   color: rgb(112, 76, 182);
 }
@@ -41,10 +44,6 @@
 }
 .minHeight200{
   min-height: 200px;
-}
-.footerUI{
-  color:white;
-
 }
 .opacity40{
   opacity: 0.4;
