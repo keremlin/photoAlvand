@@ -1,28 +1,17 @@
 import React from 'react';
-import { Counter } from './features/counter/Counter';
 import './App.css';
 import './font.css';
-import CarouselUI from './crouselUI/carouselUI';
-import CardUI from './cardUI/cardUI';
-import GalleryUI from './galleryUI/galleryUI';
-import Header from './header/header';
-import babataher from './img/babataher.jpg';
-import sofal from './img/sofal2.jpg';
-import { AccessAlarm, ThreeDRotation } from '@material-ui/icons';
-import CameraIcon from '@material-ui/icons/Camera';
+import CarouselUI from './components/crouselUI/carouselUI';
+import CardUI from './components/cardUI/cardUI';
+import GalleryUI from './components/galleryUI/galleryUI';
+import Header from './components/header/header';
+import H3UI from './components/h3UI/h3UI';
+import Footer from './components/Footer/footer';
+
 import CameraRollIcon from '@material-ui/icons/CameraRoll';
 import CameraEnhanceIcon from '@material-ui/icons/CameraEnhance';
 import EcoIcon from '@material-ui/icons/Eco';
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
-import H3UI from './h3UI/h3UI';
-import Footer from './Footer/footer';
-
-import Grow from '@material-ui/core/Grow';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-
-
-
 
 function App() {
   

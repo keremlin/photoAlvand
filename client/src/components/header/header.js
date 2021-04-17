@@ -1,6 +1,5 @@
 import React from 'react';
 import './header.css';
-import SVG from './../svg/SVG';
 import ico from './dc.svg';
 import {
     Navbar,
@@ -10,7 +9,6 @@ import {
     Button,
     Nav,
     NavDropdown,
-
 } from 'react-bootstrap';
 export default function Header() {
     return (
