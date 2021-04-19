@@ -1,6 +1,8 @@
 import React from 'react';
 import './header.css';
 import ico from './dc.svg';
+import {connect} from 'react-redux';
+import { logout } from "./../../actions/auth";
 import {
     Navbar,
     InputGroup,
@@ -10,7 +12,11 @@ import {
     Nav,
     NavDropdown,
 } from 'react-bootstrap';
-export default function Header() {
+ function Header(props) {
+    function logOut(target) {
+        target.preventDefault();
+        props.dispatch(logout());
+      };
     return (
         <>
 
@@ -27,9 +33,10 @@ export default function Header() {
                 <div className="Space"></div>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav variant="pills">
-                        <Nav.Link href="#features">صفحه اصلی</Nav.Link>
+                        <Nav.Link href="/">صفحه اصلی</Nav.Link>
                         <Nav.Link href="#pricing">کیف پول</Nav.Link>
-                        <Nav.Link href="#features1">ورود</Nav.Link>
+                        {!props.isLoggedIn?
+                        <Nav.Link href="/login">ورود</Nav.Link>:<Nav.Link href="/logout" onClick={logOut}>خروج</Nav.Link>}
                         <NavDropdown title="گالری" id="collasible-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">لیگ برتر</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">لیگ دسته یک</NavDropdown.Item>
@@ -55,3 +62,14 @@ export default function Header() {
 
         </>);
 }
+function mapStateToProps(state) {
+    const { isLoggedIn } = state.auth;
+    const { message } = state.message;
+    return {
+      isLoggedIn,
+      message
+    };
+  }
+  
+  export default connect(mapStateToProps)(Header);
+  

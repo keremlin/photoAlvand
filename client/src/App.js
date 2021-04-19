@@ -1,90 +1,84 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { Router, Switch, Route, Link } from "react-router-dom";
 import './App.css';
-import './font.css';
-import CarouselUI from './components/crouselUI/carouselUI';
-import CardUI from './components/cardUI/cardUI';
-import GalleryUI from './components/galleryUI/galleryUI';
-import Header from './components/header/header';
-import H3UI from './components/h3UI/h3UI';
+import './font.css'; import Header from './components/header/header';
+import Home from './components/Home/home';
 import Footer from './components/Footer/footer';
+import Login from "./components/login.component";
+import Register from "./components/register.component";
 
-import CameraRollIcon from '@material-ui/icons/CameraRoll';
-import CameraEnhanceIcon from '@material-ui/icons/CameraEnhance';
-import EcoIcon from '@material-ui/icons/Eco';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
+import Profile from "./components/profile.component";
+import BoardUser from "./components/board-user.component";
+import BoardModerator from "./components/board-moderator.component";
+import BoardAdmin from "./components/board-admin.component";
+import { logout } from "./actions/auth";
+import { clearMessage } from "./actions/message";
 
-function App() {
-  
-  return (
-    <div className="App">
-      <Header></Header>
-      <div className="container-fluid">
-        <section>
-          <div class="row">
-            <div class="col-sm-12 vh-55 col-xs-12 m-0 p-0"><CarouselUI></CarouselUI></div>
+import { history } from './helpers/history';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.logOut = this.logOut.bind(this);
+
+    this.state = {
+      showModeratorBoard: false,
+      showAdminBoard: false,
+      currentUser: undefined,
+    };
+
+    history.listen((location) => {
+      props.dispatch(clearMessage()); // clear message when changing location
+    });
+  }
+
+  componentDidMount() {
+    const user = this.props.user;
+
+    if (user) {
+      this.setState({
+        currentUser: user,
+        showModeratorBoard: user.roles.includes("ROLE_MODERATOR"),
+        showAdminBoard: user.roles.includes("ROLE_ADMIN"),
+      });
+    }
+  }
+
+  logOut() {
+    this.props.dispatch(logout());
+  }
+
+  render() {
+    const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
+
+    return (
+      <Router history={history}>
+        <div className="App">
+          <Header currentUser={currentUser} showModeratorBoard={showModeratorBoard} showAdminBoard={showAdminBoard}></Header>
+          <div className="container-fluid">
+          <Switch>
+              <Route exact path={["/", "/home"]} component={Home} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/profile" component={Profile} />
+              <Route path="/user" component={BoardUser} />
+              <Route path="/mod" component={BoardModerator} />
+              <Route path="/admin" component={BoardAdmin} />
+            </Switch>
+            <footer>
+              <Footer></Footer>
+            </footer>
           </div>
-        </section>
-
-        <section>
-          <div class="row bg-light pt-3 pb-3">
-            <div class="col-sm-12 col-xs-12 ">
-              <span>
-
-              <span class="pl-5">
-                <EcoIcon style={{ fontSize: "5vw" }}></EcoIcon>کیفیت بالا
-              </span>
-                <span class="pl-5">
-                  <CameraRollIcon style={{fontSize: "5vw"  }}></CameraRollIcon> قیمت مناسب
-              </span>
-                <span class="pl-5">
-                  <CameraEnhanceIcon style={{ fontSize: "5vw"  }}></CameraEnhanceIcon> عکس سفارشی
-              </span>
-                <span class="pl-5">
-                  <AddShoppingCartIcon style={{ fontSize: "5vw" , fill: "black" }}></AddShoppingCartIcon>  تحویل سریع
-              </span>
-              </span>
-            </div>
-          </div>
-          <div class="row pt-5 pb-2">
-            <div class="col-sm-12 col-xs-12 ">
-              <H3UI>دسته بندی محتوا</H3UI>
-            </div>
-            <div class="col-sm-2  col-xs-12  col-centered pb-3">
-              <CardUI></CardUI>
-            </div>
-            <div class="col-sm-2  col-xs-12  col-centered pb-3">
-              <CardUI></CardUI>
-            </div>
-            <div class="col-sm-2  col-xs-12 mr-3 col-centered pb-3">
-              <CardUI></CardUI>
-            </div>
-            <div class="col-sm-2  col-xs-12 mr-3 col-centered pb-3">
-              <CardUI></CardUI>
-            </div>
-            <div class="col-sm-2  col-xs-12 mr-3 col-centered pb-3">
-              <CardUI></CardUI>
-            </div>
-          </div>
-        </section>
-
-        <section>
-          <div className="row pt-5 pb-5 bg-light">
-            <div className="col-sm-12 col-xs-12">
-            <H3UI>مجموعه های منتخب</H3UI>
-              <GalleryUI></GalleryUI>
-            </div>
-            <div class="col-sm-12 col-xs-12"></div>
-          </div>
-
-        </section>
-
-      
-      <footer>
-        <Footer></Footer>
-      </footer>
-      </div>
-    </div>
-  );
+        </div>
+      </Router>
+    );
+  }
 }
-
-export default App;
+function mapStateToProps(state) {
+  const { user } = state.auth;
+  return {
+    user,
+  };
+}
+export default connect(mapStateToProps)(App);
