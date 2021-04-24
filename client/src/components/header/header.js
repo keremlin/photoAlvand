@@ -51,6 +51,9 @@ import {
                         <Nav.Link href="#features4"> جام حذفی</Nav.Link>
                         <Nav.Link href="#features5"> جام جهانی</Nav.Link>
                         <Nav.Link href="#features6"> جام ملت های آسیا</Nav.Link>
+                        {props.isAdmin?
+                        <Nav.Link href="/admin">پنل ادمین</Nav.Link>:<></>}
+
                         <Form inline>
       <FormControl type="text" placeholder="جستجو عکس" className="mr-sm-2" />
       <Button variant="outline-info">جستجو</Button>
@@ -65,9 +68,11 @@ import {
 function mapStateToProps(state) {
     const { isLoggedIn } = state.auth;
     const { message } = state.message;
+    const isAdmin=(state.auth.user && state.auth.user.roles? state.auth.user.roles.includes('ROLE_ADMIN'):false);
     return {
       isLoggedIn,
-      message
+      message,
+      isAdmin
     };
   }
   

@@ -11,7 +11,7 @@ import Register from "./components/register.component";
 import Profile from "./components/profile.component";
 import BoardUser from "./components/board-user.component";
 import BoardModerator from "./components/board-moderator.component";
-import BoardAdmin from "./components/board-admin.component";
+import BoardAdmin from "./components/Admin/board-admin.component";
 import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
 

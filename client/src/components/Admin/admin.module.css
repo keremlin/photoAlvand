@@ -1,0 +1,11 @@
+.chips{
+   direction:ltr;
+}
+.modals{
+   directin:rtl;
+   text-align: right;
+   font-family: 'Yekan';
+}
+.createCategoryButt{
+   text-align: left;
+}
