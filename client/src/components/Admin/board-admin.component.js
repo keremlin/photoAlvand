@@ -46,9 +46,7 @@ export default class BoardAdmin extends Component {
           <div class="col-sm-6 col-xs-12">
             <h3>پنل ادمین</h3>
              <h3>{this.state.content}</h3>
-             <span>
                <UploadFiles></UploadFiles>
-             </span>
           </div>
           <div class="col-sm-6 col-xs-12">
             <ShowCategory onCategoryListChanged={this.onCategoryListChanged}></ShowCategory>
