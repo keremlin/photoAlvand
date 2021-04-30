@@ -9,3 +9,6 @@
 .createCategoryButt{
    text-align: left;
 }
+.fileListBoarder{
+   border:1px gray solid;
+}

@@ -26,7 +26,8 @@ class ShowCategory extends Component {
         super(props);
         this.state = {
             list: [{ name: 'No category yet', ID: -1, description: 'Add new category' }]
-            , selectedList: []
+            , selectedList: [],
+            id:-1,
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
@@ -34,7 +35,20 @@ class ShowCategory extends Component {
     componentDidMount() {
         this.handleRefresh();
     }
+    
+    componentDidUpdate(){
+        console.log("showCategory.cdu.id=> " + this.props.id);
+        if(this.state.id != this.props.id){
+            //enable new list
+            
+            //update the id
+            this.setState({
+                id:this.props.id,
+                selectedList:this.props.list.concat(),
+            });
+        }
 
+    }
      handleRefresh =async () => {
          console.log("happend! ");
         await http.get('/category/list',
