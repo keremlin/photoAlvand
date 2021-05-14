@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Router, Switch, Route, Link } from "react-router-dom";
+import { Router, Switch, Route } from "react-router-dom";
 import './App.css';
 import './font.css'; import Header from './components/header/header';
 import Home from './components/Home/home';
@@ -14,7 +14,7 @@ import BoardModerator from "./components/board-moderator.component";
 import BoardAdmin from "./components/Admin/board-admin.component";
 import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
-
+import Picture from './components/picture/picture.component';
 import { history } from './helpers/history';
 
 class App extends Component {
@@ -65,6 +65,7 @@ class App extends Component {
               <Route path="/user" component={BoardUser} />
               <Route path="/mod" component={BoardModerator} />
               <Route path="/admin" component={BoardAdmin} />
+              <Route path="/picture/:pictureId" component={Picture} />
             </Switch>
             <footer>
               <Footer></Footer>

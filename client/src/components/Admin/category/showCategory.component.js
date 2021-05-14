@@ -38,7 +38,7 @@ class ShowCategory extends Component {
     
     componentDidUpdate(){
         console.log("showCategory.cdu.id=> " + this.props.id);
-        if(this.state.id != this.props.id){
+        if(this.state.id !== this.props.id){
             //enable new list
             
             //update the id
@@ -89,8 +89,8 @@ class ShowCategory extends Component {
             <div className={styles.chips}>
                 <div className={classes.root}>
                 
-                    {this.state.list.map((item) =>
-                <div key={item.id} >
+                    {this.state.list.map((item,index) =>
+                <div key={index} >
                         <Chip
                             icon={<StarsIcon
                                 style={{

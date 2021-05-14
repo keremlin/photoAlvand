@@ -4,10 +4,16 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: ۴0vmin;
   pointer-events: none;
 }
-
+.pageMinHeight80{
+min-height: 75vh;
+background-color: lightgray;
+background-image:  url('./img/pingbg.jpg');
+background-size: cover;
+background-position: center;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-float infinite 3s ease-in-out;

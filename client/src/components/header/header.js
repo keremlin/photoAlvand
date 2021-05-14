@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import { logout } from "./../../actions/auth";
 import {
     Navbar,
-    InputGroup,
     FormControl,
     Form,
     Button,

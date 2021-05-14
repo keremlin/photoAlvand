@@ -1,0 +1,53 @@
+.responsive {
+    width: 100%;
+    height: auto;
+  }
+  .pictureWrap{
+    border: 1px lightgray solid;
+    border-radius: 0.5px;
+    margin-top:20px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: justify;
+    width:100%;
+    
+  }
+  .pictureWrap h6{
+      line-height: 1.8;
+  }
+  .chips{
+    direction:ltr;
+ }
+ .buttonWraper{
+     margin:10px;
+     display: inline-block;
+ }
+  .leftAlign{
+      text-align: left;
+    direction: ltr;
+    width: 100%;
+     margin: 0 auto;
+     background-color: rgb(227, 239, 243);
+ }
+ .price{
+     width:100%;
+     padding-right: 50px;
+     font-size: calc(10px + 2.5vmin);
+     color:rgb(20, 204, 20);
+ }
+ .button{
+     width:170px;
+ }
+ .bg{
+    background-image:  url('./../../img/bg-role.jpg');
+    
+    background-size: 200px;
+    background-repeat: repeat-y ;
+ }
+ .title{
+     min-width:100%;
+     text-align: center;
+     margin-bottom: 15px;
+    background-color: rgb(227, 239, 243);
+ }

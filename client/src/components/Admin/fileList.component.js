@@ -5,11 +5,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Checkbox from '@material-ui/core/Checkbox';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import styles from './admin.module.css';
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CheckboxListSecondary(props) {
   const classes = useStyles();
-  const [checked, setChecked] = React.useState([1]);
+  //const [checked, setChecked] = React.useState([1]);
   const [selected , setSelected]=React.useState(-1);
 
   const handleClick=(index,id)=>()=>{
@@ -43,8 +42,8 @@ export default function CheckboxListSecondary(props) {
       {props.list.map((value,index) => {
         const labelId = `checkbox-list-secondary-label-${index}`;
         return (
-            <div className={selected==index? classes.listItem:null} onClick={handleClick(index,value.id)} >
-          <ListItem key={index} button>
+            <div key={index} className={selected===index? classes.listItem:null} onClick={handleClick(index,value.id)} >
+          <ListItem button>
             <ListItemAvatar>
               <Avatar
                 className={classes.large}

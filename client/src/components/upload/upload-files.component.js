@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-
+import { Form } from "react-bootstrap";
 import UploadService from "./upload-files.service";
+import styles from './../Admin/admin.module.css';
+import { Divider } from "@material-ui/core";
 
 
 export default class UploadFiles extends Component {
@@ -21,12 +23,7 @@ export default class UploadFiles extends Component {
   }
 
   componentDidMount() {
-    UploadService.getFiles().then((response) => {
-      this.setState({
-        fileInfos: response.data,
-      });
-      this.props.onFileListChange(response.data);
-    });
+   this.props.onFileListChange();
   }
 
   selectFile(event) {
@@ -79,11 +76,44 @@ export default class UploadFiles extends Component {
       currentFile,
       progress,
       message,
-      fileInfos,
     } = this.state;
 
     return (
       <div>
+
+        <div className="form-group row">
+          <div className="col-xs-12">
+            <Form.File
+              className={styles.inputFile}
+              id="custom-file-translate-html"
+              label="عکس "
+              data-browse="انتخاب فایل"
+              custom
+              onChange={this.selectFile}
+            />
+          </div>
+        </div>
+        <div className="row">
+          <div className={"col-xs-12 "+styles.marginAuto}>
+            <button
+              className={"btn btn-success mb-2 " + styles.inputFileBottun}
+              disabled={!selectedFiles}
+              onClick={this.upload}
+            >
+              بارگزاری عکس
+            </button>
+
+          </div>
+
+        </div>
+
+       
+
+        <label className="btn btn-default">
+         
+         
+        </label>
+        
         {currentFile && (
           <div className="progress">
             <div
@@ -98,20 +128,10 @@ export default class UploadFiles extends Component {
             </div>
           </div>
         )}
-
-        <label className="btn btn-default">
-          <input type="file" onChange={this.selectFile} />
-        </label>
-        <button
-          className="btn btn-success"
-          disabled={!selectedFiles}
-          onClick={this.upload}
-        >
-          Upload
-        </button>
         <div className="alert alert-light" role="alert">
           {message}
         </div>
+        <Divider/>
       </div>
     );
   }

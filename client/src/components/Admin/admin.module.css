@@ -12,3 +12,27 @@
 .fileListBoarder{
    border:1px gray solid;
 }
+.paper{
+   margin-top:20px ;
+   padding: 15px;
+   margin-bottom: 20px;
+}
+.cardTitle{
+   background-color: lightgray;
+   min-width:100%;
+   margin-bottom: 20px;
+}
+.divider{
+   padding-top:15px;
+   padding-bottom:15px;
+}
+.inputFile{
+   max-width: 70%;
+   margin:10px;
+}
+.inputFileBottun{
+   margin:10px;
+}
+.marginAuto{
+   margin:auto;
+}
