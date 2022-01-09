@@ -17,8 +17,8 @@ export default class UploadFiles extends Component {
       progress: 0,
       message: "",
       fileInfos: [],
-      
-      selectedIndex:-1
+      selectedIndex:-1,
+      fileUploadedId:0,
     };
   }
 
@@ -46,8 +46,10 @@ export default class UploadFiles extends Component {
       });
     })
       .then((response) => {
+        console.log(response);
         this.setState({
           message: response.data.message,
+          fileUploadedId:response.data.id,
         });
         return UploadService.getFiles();
       })
@@ -57,6 +59,8 @@ export default class UploadFiles extends Component {
         });
         console.log('before on file list change');
         this.props.onFileListChange(files.data);
+        if(this.props.onSingleFileUploaded!=null && typeof this.props.onSingleFileUploaded ==='function')
+          this.props.onSingleFileUploaded(this.state.message,this.state.fileUploadedId);
       })
       .catch(() => {
         this.setState({
@@ -85,7 +89,7 @@ export default class UploadFiles extends Component {
           <div className="col-xs-12">
             <Form.File
               className={styles.inputFile}
-              id="custom-file-translate-html"
+              
               label="عکس "
               data-browse="انتخاب فایل"
               custom

@@ -99,16 +99,11 @@ export default class BoardAdmin extends Component {
     );
     if (isSuccefullySaved) this.onFileListChange();
   }
-
   render() {
-
     return (
       <>
-
-
         <MiniDrawer></MiniDrawer>
         <div className="row pageMinHeight80">
-
           <div className="col-sm-2 col-xs-0"></div>
           <div className="col-sm-3 col-xs-12">
             <Card className={styles.paper}>
@@ -132,9 +127,7 @@ export default class BoardAdmin extends Component {
             </Card>
           </div>
           <div className="col-sm-1 col-xs-0"></div>
-
           <div>
-
           </div>
         </div>
       </>

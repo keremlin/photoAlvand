@@ -10,6 +10,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import {Link} from 'react-router-dom';
 
 const drawerWidth = 200;
 
@@ -61,18 +62,21 @@ export default function PermanentDrawerRight() {
         anchor="right"
       >
         <div className={classes.toolbar}>
-        <div className={styles.cardTitle}>بارگزاری فایل</div>
+        <div className={styles.cardTitle}>دسترسی ها </div>
         </div>
         <Divider />
         <List>
-          {['بارگزاری عکس', 'مدیریت عکس', 'مدیریت فروش', 'مدیریت سایت'].map((text, index) => (
-              <ListItem button key={text}>
+          
+          {[{text :'بارگزاری عکس' ,link:'/admin'},{text:'مدیریت عکس' ,link:'/admin'},{text:'مدیریت فروش' ,link:'/admin'},{text:'مدیریت سایت' ,link:'/siteManagement'}].map((item, index) => (
+              <Link to={item.link}>
+              <ListItem button key={index} >
                   <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
                   <ListItemText
                       disableTypography
-                      primary={text}
+                      primary={item.text}
                   />
               </ListItem>
+              </Link>
           ))}
         </List>
         <Divider />

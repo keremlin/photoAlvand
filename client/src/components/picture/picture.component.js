@@ -21,10 +21,10 @@ export default function Picture() {
     const [isLoaded, setIsLoaded] = useState(false);
     const {pictureId} =useParams();
     console.log(pictureId);
-    useEffect(() => async () => {
+    useEffect( () => {
         console.log("picture>useEffect>called");
         if (isLoaded === false)
-            await http.get('/file/fileInfo/'+pictureId,
+            http.get('/file/fileInfo/'+pictureId,
                 { headers: authHeader() })
                 .then((response) => {
                     if (response.data != null) {

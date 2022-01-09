@@ -23,11 +23,6 @@ const cat=(props.categories?props.categories:[1]);
   const handleDelete = () => {
     console.info('You clicked the delete icon.');
   };
-
-  const handleClick = () => {
-    console.info('You clicked the Chip.');
-  };
-
   return (
     <div className={classes.chips}>
       <div className={classes.root}>

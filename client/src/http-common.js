@@ -1,7 +1,8 @@
 import axios from "axios";
+import config from "./config.json"
 
 export default axios.create({
-  baseURL: "http://localhost:8080/api",
+  baseURL: config.SERVER_URL,
   headers: {
     "Content-type": "application/json"
   }
