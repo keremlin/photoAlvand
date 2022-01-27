@@ -2,8 +2,8 @@
 // Convert date from html to jalali and pass string of my format
 export function date2convert(date) {
     var date1=new Date(date);
-    console.log(date1);
-    console.log(date1.getFullYear()+"-"+(date1.getMonth()+1)+"-"+date1.getDate());
+    //console.log(date1);
+    //console.log(date1.getFullYear()+"-"+(date1.getMonth()+1)+"-"+date1.getDate());
     var jalali=gregorian_to_jalali(date1.getFullYear(),(date1.getMonth()+1),date1.getDate());
     return jalali;
 };

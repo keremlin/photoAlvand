@@ -41,7 +41,6 @@ export default class Home extends Component {
    }
    getCarouselUI(configs){
      console.log("Starting getting path-----------------------");
-    let listOfPath=[];
     let ips=[];
     if (this.state.isLoaded){
       console.log("Starting getting path2-----------------------");

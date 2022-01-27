@@ -125,3 +125,17 @@ border-radius: 20px 20px 0 0;
     transform: translateY(0px);
   }
 }
+.profile-bg{
+  background-color: rgb(235, 235, 235);
+  padding: 7%;
+  padding-top:0;
+}
+.margin-but{
+  margin-bottom: 15px;
+}
+.underLine{
+  color:blueviolet;
+}
+.underLine:hover{
+  color: violet;
+}

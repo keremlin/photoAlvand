@@ -15,12 +15,19 @@ import authHeader from "./../../services/auth-header";
 import {date2convert} from './../../services/jalali';
 import {useParams} from 'react-router-dom';
 import Filepreview from './../Admin/filePreview.component';
+import Popup from '../popup/Popup';
 
 export default function Picture() {
     const [file, setFile] = useState({ data: { formname: "arash" } });
     const [isLoaded, setIsLoaded] = useState(false);
     const {pictureId} =useParams();
-    console.log(pictureId);
+
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShowModal = () => setShow(true);
+    const [order,setOrder]=useState({message:"Message"});
+
+
     useEffect( () => {
         console.log("picture>useEffect>called");
         if (isLoaded === false)
@@ -40,7 +47,22 @@ export default function Picture() {
                 });
                 
                 console.log(isLoaded);
+                
     });
+    function addToKart(){
+        console.log("addToKart clicked");
+        http.post('/order/setNewOrder',pictureId,
+            { headers: authHeader() })
+            .then(orders=>{
+                console.log(orders.data);
+                setOrder(orders.data);
+                handleShowModal();
+                console.log(order.message)
+            })
+            .catch(err=>{
+                console.log(err);
+            })
+    }
     var dateTime=date2convert(new Date("2021-05-13T12:45:45.000+00:00"))+"";
     return (
         <>
@@ -105,10 +127,15 @@ export default function Picture() {
                 </div>
                 <div className={"col-sx-12 col-sm-6 " + styles.pictureWrap}>
                     <Filepreview src={file.data.filePath}></Filepreview>
-                    <div className={styles.buttonWraper}><Button className={styles.button} variant="success">افزودن به سبد خرید<ShoppingCartIcon /></Button></div>
+                    <div className={styles.buttonWraper}><Button onClick={addToKart} className={styles.button} variant="success">افزودن به سبد خرید<ShoppingCartIcon /></Button></div>
                     <div className={styles.buttonWraper}><Button className={styles.button} variant="primary"> خرید سریع<CreditCardIcon /></Button></div>
                     <div className={styles.buttonWraper}><Button className={styles.button} variant="warning">جزییات <HelpOutlineIcon /></Button></div>
                 </div>
+                {(show?
+                <Popup show={show} heading={""} body={order.message}
+                    close={"بستن"} save={"سبد خرید"} handleClose={handleClose} handleSave={handleClose}>
+                </Popup>
+                :<></>)}
 
                 <div className="col-sm-1 col-sx-0"></div>
             </div>
