@@ -7,6 +7,7 @@ import CheckButton from "react-validation/build/button";
 
 import { connect } from "react-redux";
 import { login } from "../actions/auth";
+import BorderColorIcon from '@material-ui/icons/BorderColor';
 
 const required = (value) => {
   if (!value) {
@@ -120,7 +121,6 @@ class Login extends Component {
                 validations={[required]}
               />
             </div>
-
             <div className="form-group">
               <button
                 className="btn btn-primary btn-block"
@@ -132,7 +132,7 @@ class Login extends Component {
                 <span>ورود</span>
               </button>
             </div>
-
+            <span className="underLine" ><a href="/register"><BorderColorIcon fontSize="small"/> ثبت نام کنید</a></span>
             {message && (
               <div className="form-group">
                 <div className="alert alert-danger" role="alert">

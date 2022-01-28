@@ -29,7 +29,6 @@ export default class Home extends Component {
   componentDidMount() {
     http.post('/configuration/getAllConfiguratin',{headers:authHeader()})
         .then((response)=>{
-            console.log(response.data);
             this.setState({config:response.data});
             this.setState({isLoaded:true});
             this.getCarouselUI(response.data);
@@ -40,23 +39,18 @@ export default class Home extends Component {
         
    }
    getCarouselUI(configs){
-     console.log("Starting getting path-----------------------");
     let ips=[];
     if (this.state.isLoaded){
-      console.log("Starting getting path2-----------------------");
         configurationService.create(configs)
           .forEach(item => {
            ips.push(item.picture);
         });
-        console.log("Starting getting path3-----------------------"+ips);
          http.post('/file/fileInfos',JSON.stringify(ips), { headers: authHeader()})
                 .then(response => {
                     this.setState({listOfPaths:response.data})
                     this.setState({isPathLoaded:true});
-                    console.log(response.data);
                 }).catch((err) => {
                     console.log(err);
-                    console.log("err");
                 });
     }
    }

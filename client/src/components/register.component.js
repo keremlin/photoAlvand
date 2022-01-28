@@ -37,11 +37,43 @@ const vusername = (value) => {
   }
 };
 
+const vName = (value) => {
+  if (value.length < 3 || value.length > 256) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        نام باید بین سه و ۲۵۶  کارکتر باشد
+      </div>
+    );
+  }
+};
+
+const vFnmae = (value) => {
+  if (value.length < 3 || value.length > 256) {
+    return (
+      <div className="alert alert-danger" role="alert">
+        نام خانوادگی باید بین سه و ۲۵۶  کارکتر باشد
+      </div>
+    );
+  }
+};
+
+const vMobile = (value) => {
+  var mob = /^0[1-9]{1}[0-9]{9}$/;
+  if (mob.test(value) == false) {
+    return (
+      <div className="alert alert-danger" role="alert">
+       شماره موبایل را صحیح وارد کنید (09XXXXXXXX)
+      </div>
+    );
+  }
+  return true;
+};
+
 const vpassword = (value) => {
   if (value.length < 6 || value.length > 40) {
     return (
       <div className="alert alert-danger" role="alert">
-        The password must be between 6 and 40 characters.
+        رمز عبور باید بین ۶ تا ۴۰ کارکتر باشد
       </div>
     );
   }
@@ -59,6 +91,9 @@ class Register extends Component {
       username: "",
       email: "",
       password: "",
+      name:"",
+      fname:"",
+      mobile:"",
       successful: false,
     };
   }
@@ -68,7 +103,21 @@ class Register extends Component {
       username: e.target.value,
     });
   }
-
+  onChangeName(e) {
+    this.setState({
+      name: e.target.value,
+    });
+  }
+  onChangeFname(e) {
+    this.setState({
+      fname: e.target.value,
+    });
+  }
+  onChangeMobile(e) {
+    this.setState({
+      mobile: e.target.value,
+    });
+  }
   onChangeEmail(e) {
     this.setState({
       email: e.target.value,
@@ -129,7 +178,7 @@ class Register extends Component {
             {!this.state.successful && (
               <div>
                 <div className="form-group">
-                  <label htmlFor="username">Username</label>
+                  <label htmlFor="username">نام کاربری</label>
                   <Input
                     type="text"
                     className="form-control"
@@ -141,7 +190,43 @@ class Register extends Component {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="email">Email</label>
+                  <label htmlFor="name">نام</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="name"
+                    value={this.state.name}
+                    onChange={this.onChangename}
+                    validations={[required, vName]}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="fname">نام خانوادگی</label>
+                  <Input
+                    type="text"
+                    className="form-control"
+                    name="fname"
+                    value={this.state.fname}
+                    onChange={this.onChangeFname}
+                    validations={[required, vFnmae]}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="mobile">شماره تلفن همراه</label>
+                  <Input
+                    type="number"
+                    className="form-control"
+                    name="mobile"
+                    value={this.state.mobile}
+                    onChange={this.onChangeMobile}
+                    validations={[required, vMobile]}
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="email">آدرس ایمیل</label>
                   <Input
                     type="text"
                     className="form-control"
@@ -153,7 +238,7 @@ class Register extends Component {
                 </div>
 
                 <div className="form-group">
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor="password">رمزعبور</label>
                   <Input
                     type="password"
                     className="form-control"
@@ -165,7 +250,7 @@ class Register extends Component {
                 </div>
 
                 <div className="form-group">
-                  <button className="btn btn-primary btn-block">Sign Up</button>
+                  <button className="btn btn-primary btn-block">ثبت نام</button>
                 </div>
               </div>
             )}

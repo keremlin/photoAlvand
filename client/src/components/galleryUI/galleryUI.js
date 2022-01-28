@@ -19,7 +19,6 @@ export default function GalleryUI() {
           if (response.data != null) {
             setCategory(response.data);
             setIsLoaded(true);
-            console.log(response.data);
           }
         }).catch(function (err) {
           setIsLoaded(false);

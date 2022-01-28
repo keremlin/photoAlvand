@@ -3,6 +3,11 @@ import './header.css';
 import ico from './dc.svg';
 import {connect} from 'react-redux';
 import { logout } from "./../../actions/auth";
+import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
+import HomeIcon from '@material-ui/icons/Home';
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import {
     Navbar,
     FormControl,
@@ -19,7 +24,7 @@ import {
     return (
         <>
 
-            <Navbar collapseOnSelect expand="lg" variant="dark" className="bg-dark">
+            <Navbar collapseOnSelect expand="lg" variant="dark" className="bg-dark font-menu">
                 <div className="Space">
                    
                 </div>
@@ -32,26 +37,24 @@ import {
                 <div className="Space"></div>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav variant="pills">
-                        <Nav.Link href="/">صفحه اصلی</Nav.Link>
-                        <Nav.Link href="#pricing">کیف پول</Nav.Link>
-                        {!props.isLoggedIn?
-                        <Nav.Link href="/login">ورود</Nav.Link>:<Nav.Link href="/logout" onClick={logOut}>خروج</Nav.Link>}
+                        <Nav.Link href="/"><HomeIcon fontSize="small"/> صفحه اصلی</Nav.Link>
+                        <Nav.Link href="/profile"><ShoppingBasketIcon fontSize="small"/> سبد خرید</Nav.Link>
+                        {!props.isLoggedIn ?
+                            <Nav.Link href="/login"><VpnKeyIcon fontSize="small"/>ورود</Nav.Link> :
+                            <Nav.Link href="/logout" onClick={logOut}><LockOpenIcon fontSize="small"/> خروج</Nav.Link>
+                        }
                         <NavDropdown title="گالری" id="collasible-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">لیگ برتر</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">لیگ دسته یک</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">جام جهانی</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.4">جام ملت های آسیا</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.4">جام ملت های آسیا</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.4">جام ملت های آسیا</NavDropdown.Item>
                         </NavDropdown>
-                    
-                        
-                        <Nav.Link href="#features2">آخرین گالری ها</Nav.Link>
-                        <Nav.Link href="#features3">لیگ برتر </Nav.Link>
-                        <Nav.Link href="#features4"> جام حذفی</Nav.Link>
-                        <Nav.Link href="#features5"> جام جهانی</Nav.Link>
-                        <Nav.Link href="#features6"> جام ملت های آسیا</Nav.Link>
+                        <Nav.Link href="#features2">گالری ها</Nav.Link>
                         {props.isAdmin?
-                        <Nav.Link href="/admin">پنل ادمین</Nav.Link>:<></>}
+                        <Nav.Link href="/admin"><SettingsApplicationsIcon fontSize="small"/>ادمین</Nav.Link>:<></>}
 
                         <Form inline>
       <FormControl type="text" placeholder="جستجو عکس" className="mr-sm-2" />

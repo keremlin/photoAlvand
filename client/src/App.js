@@ -70,8 +70,8 @@ class App extends Component {
               <Route path="/siteManagement" component={SiteManagement} />
               <Route path="/picture/:pictureId" component={Picture} />
               <Route path="/search/:categoryId" render={(props) => (
-    <Search {...props} time={(new Date()).getTime()} />
-  )} />
+                <Search {...props} time={(new Date()).getTime()} />
+              )} />
             </Switch>
             <footer>
               <Footer></Footer>
