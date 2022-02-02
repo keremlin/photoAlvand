@@ -63,14 +63,14 @@ export default class SiteManagement extends Component {
         return "0";
     }
     onFileListChange=()=>{return;}
-    onCrasualSettingChanged=(data)=>{
+    onCrasualSettingChanged = (data) => {
         console.log(data);
-        let config2=this.state.config;
-        config2[this.findID(data.identity+"BigText")].configValue=data.BigText;
-        config2[this.findID(data.identity+"SmallText")].configValue=data.SmallText;
-        config2[this.findID(data.identity+"PictureId")].configValue=data.PictureId;
-        this.setState({config:config2});
-        this.setState({[data.identity]:data});
+        let config2 = this.state.config;
+        config2[this.findID(data.identity + "BigText")].configValue = data.BigText;
+        config2[this.findID(data.identity + "SmallText")].configValue = data.SmallText;
+        config2[this.findID(data.identity + "PictureId")].configValue = data.PictureId;
+        this.setState({ config: config2 });
+        this.setState({ [data.identity]: data });
     }
     onSaveForm=()=>{
         console.log("siteManagement.component.onSaveForm");

@@ -8,7 +8,7 @@ export default function CarouselUI(props) {
         <>
             <Carousel>
                 {
-                    (props.isLoaded===true?props.config.map((item, index) =>
+                    (props.isLoaded===true && props.isPathLoaded ? props.config.map((item, index) =>
                         <Carousel.Item key={index*7}>
                             <img
                                 className="d-block vh-55 tales"

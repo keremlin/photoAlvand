@@ -83,7 +83,7 @@ export default function CardUI(props) {
   );
   return (
     <>
-      {isLoaded ? (
+      {isLoaded && category.category!=null ? (
         <Link to={"/search/" + category.category.id} >
           <Card className={classes.root} style={{ width: '250px' }} >
 

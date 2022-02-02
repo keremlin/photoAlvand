@@ -66,7 +66,6 @@ const vMobile = (value) => {
       </div>
     );
   }
-  return true;
 };
 
 const vpassword = (value) => {
@@ -86,12 +85,15 @@ class Register extends Component {
     this.onChangeUsername = this.onChangeUsername.bind(this);
     this.onChangeEmail = this.onChangeEmail.bind(this);
     this.onChangePassword = this.onChangePassword.bind(this);
+    this.onChangeName = this.onChangeName.bind(this);
+    this.onChangeFname = this.onChangeFname.bind(this);
+    this.onChangeMobile = this.onChangeMobile.bind(this);
 
     this.state = {
       username: "",
       email: "",
       password: "",
-      name:"",
+      name:"x",
       fname:"",
       mobile:"",
       successful: false,
@@ -132,17 +134,20 @@ class Register extends Component {
 
   handleRegister(e) {
     e.preventDefault();
-
+    console.log('Start reg');
     this.setState({
       successful: false,
     });
 
     this.form.validateAll();
+    console.log(this.checkBtn.context._errors.length);
 
     if (this.checkBtn.context._errors.length === 0) {
+    console.log('if resolved'+this.state.name);
       this.props
         .dispatch(
-          register(this.state.username, this.state.email, this.state.password)
+          register(this.state.username, this.state.email, this.state.password,
+            this.state.name,this.state.fname,this.state.mobile)
         )
         .then(() => {
           this.setState({
@@ -196,7 +201,7 @@ class Register extends Component {
                     className="form-control"
                     name="name"
                     value={this.state.name}
-                    onChange={this.onChangename}
+                    onChange={this.onChangeName}
                     validations={[required, vName]}
                   />
                 </div>
@@ -216,7 +221,7 @@ class Register extends Component {
                 <div className="form-group">
                   <label htmlFor="mobile">شماره تلفن همراه</label>
                   <Input
-                    type="number"
+                    type="text"
                     className="form-control"
                     name="mobile"
                     value={this.state.mobile}
