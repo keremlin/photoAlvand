@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import http from './../../http-common';
 import authHeader from "./../../services/auth-header";
 import { Link } from 'react-router-dom';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 export default function GalleryUI() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -63,7 +64,7 @@ export default function GalleryUI() {
               </ImageListItem>
             </Link>
           ))
-          : 'خطا در ارتباط')
+          :<span className="marginAuto"><CircularProgress color="secondary"></CircularProgress> سعی در برقراری ارتباط</span>)
       }
     </ImageList>
   );

@@ -139,4 +139,18 @@ border-radius: 20px 20px 0 0;
 .underLine:hover{
   color: violet;
 }
-
+.marginAuto{
+  margin:auto;
+}
+.textAlignCenter{
+  text-align: center;
+  /* color:blueviolet; */
+}
+.react-router-link{
+  text-decoration: none;
+  color:rgba(255,255,255,.5);
+}
+.react-router-link:hover{
+  color:rgba(255,255,255,.9);
+  text-decoration: none;
+}

@@ -10,6 +10,7 @@ import {date2convert} from './../../services/jalali';
 import Filepreview from './../Admin/filePreview.component';
 import { styled } from '@material-ui/core/styles';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import {Link} from 'react-router-dom';
 
 export default function DenseTable(props) {
 
@@ -25,6 +26,9 @@ export default function DenseTable(props) {
           fontFamily:'Yekan',textAlign:'center'
         },
       }));
+      function nextPath(path,props) {
+        props.history.push(path);
+      }
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -44,7 +48,7 @@ export default function DenseTable(props) {
               key={index}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <StyledTableCell sx={{maxWidth:100}} align="right"><a href={'../picture/'+row.id}><Filepreview src={row.filePath}></Filepreview></a></StyledTableCell>
+              <StyledTableCell sx={{maxWidth:100}} align="right"><Link to={'/picture/'+row.id}><Filepreview   src={row.filePath}></Filepreview></Link></StyledTableCell>
               <StyledTableCell >
                 {row.formname}
               </StyledTableCell>

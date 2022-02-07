@@ -8,6 +8,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
+import { Outlet, Link } from "react-router-dom";
 import {
     Navbar,
     FormControl,
@@ -16,17 +17,16 @@ import {
     Nav,
     NavDropdown,
 } from 'react-bootstrap';
- function Header(props) {
+function Header(props) {
     function logOut(target) {
         target.preventDefault();
         props.dispatch(logout());
-      };
+    };
     return (
         <>
-
             <Navbar collapseOnSelect expand="lg" variant="dark" className="bg-dark font-menu">
                 <div className="Space">
-                   
+
                 </div>
                 <Navbar.Brand href="#home">
                     <img src={ico} width="50" height="50" className="d-inline-block align-top" alt="Events Panel"></img>
@@ -37,11 +37,11 @@ import {
                 <div className="Space"></div>
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav variant="pills">
-                        <Nav.Link href="/"><HomeIcon fontSize="small"/> صفحه اصلی</Nav.Link>
-                        <Nav.Link href="/profile"><ShoppingBasketIcon fontSize="small"/> سبد خرید</Nav.Link>
+                        <Nav.Link><Link className='react-router-link' to="/"><HomeIcon fontSize="small" /> صفحه اصلی </Link> </Nav.Link>
+                        <Nav.Link><Link  className='react-router-link' to="/profile"><ShoppingBasketIcon fontSize="small" /> سبد خرید </Link> </Nav.Link>
                         {!props.isLoggedIn ?
-                            <Nav.Link href="/login"><VpnKeyIcon fontSize="small"/>ورود</Nav.Link> :
-                            <Nav.Link href="/logout" onClick={logOut}><LockOpenIcon fontSize="small"/> خروج</Nav.Link>
+                            <Nav.Link className="nav-link" href="/login"><VpnKeyIcon fontSize="small" />ورود</Nav.Link> :
+                            <Nav.Link className="nav-link" href="/logout" onClick={logOut}><LockOpenIcon fontSize="small" /> خروج</Nav.Link>
                         }
                         <NavDropdown title="گالری" id="collasible-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">لیگ برتر</NavDropdown.Item>
@@ -53,30 +53,31 @@ import {
                             <NavDropdown.Item href="#action/3.4">جام ملت های آسیا</NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link href="#features2">گالری ها</Nav.Link>
-                        {props.isAdmin?
-                        <Nav.Link href="/admin"><SettingsApplicationsIcon fontSize="small"/>ادمین</Nav.Link>:<></>}
+                        {props.isAdmin ?
+                            <Nav.Link><Link  className='react-router-link' to="/admin"><SettingsApplicationsIcon fontSize="small" /> ادمین </Link> </Nav.Link> : <></>}
 
                         <Form inline>
-      <FormControl type="text" placeholder="جستجو عکس" className="mr-sm-2" />
-      <Button variant="outline-info">جستجو</Button>
-    </Form>
+                            <FormControl type="text" placeholder="جستجو عکس" className="mr-sm-2" />
+                            <Button variant="outline-info">جستجو</Button>
+                        </Form>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
+<Outlet/>
 
-
-        </>);
+        </>
+        );
 }
 function mapStateToProps(state) {
     const { isLoggedIn } = state.auth;
     const { message } = state.message;
-    const isAdmin=(state.auth.user && state.auth.user.roles? state.auth.user.roles.includes('ROLE_ADMIN'):false);
+    const isAdmin = (state.auth.user && state.auth.user.roles ? state.auth.user.roles.includes('ROLE_ADMIN') : false);
     return {
-      isLoggedIn,
-      message,
-      isAdmin
+        isLoggedIn,
+        message,
+        isAdmin
     };
-  }
+}
   
   export default connect(mapStateToProps)(Header);
   

@@ -13,11 +13,13 @@ import {useEffect,useState} from 'react';
 import http from './../../http-common';
 import authHeader from "./../../services/auth-header";
 import {date2convert} from './../../services/jalali';
-import {useParams} from 'react-router-dom';
+import {useParams,Link} from 'react-router-dom';
 import Filepreview from './../Admin/filePreview.component';
 import Popup from '../popup/Popup';
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
 
-export default function Picture() {
+export default function Picture(props) {
     const [file, setFile] = useState({ data: { formname: "arash" } });
     const [isLoaded, setIsLoaded] = useState(false);
     const {pictureId} =useParams();
@@ -132,8 +134,12 @@ export default function Picture() {
                     <div className={styles.buttonWraper}><Button className={styles.button} variant="warning">جزییات <HelpOutlineIcon /></Button></div>
                 </div>
                 {(show?
-                <Popup show={show} heading={""} body={order.message}
-                    close={"بستن"} save={"سبد خرید"} handleClose={handleClose} handleSave={handleClose}>
+                <Popup show={show} heading={""} 
+                    body={<div className={styles.picturePopupBody}><CheckCircleOutlineIcon className={styles.picturePopupIcon}></CheckCircleOutlineIcon> {order.message}</div>}
+                    close={<span className={styles.picturePopupCloseButt}><OpenInBrowserIcon></OpenInBrowserIcon> بستن</span>} 
+                    save={<span className={styles.picturePopupCloseButt}><Link className='react-router-link' to = "/profile"><ShoppingCartIcon></ShoppingCartIcon> سبد خرید</Link></span>} 
+                    handleClose={handleClose} 
+                    handleSave={handleClose}>
                 </Popup>
                 :<></>)}
 

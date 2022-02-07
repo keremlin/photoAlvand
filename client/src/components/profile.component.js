@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { connect } from "react-redux";
 import authHeader from "../services/auth-header";
 import http from './../http-common';
@@ -70,7 +70,7 @@ class Profile extends Component {
     const { user: currentUser } = this.props;
     // const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
     if (!currentUser) {
-      return <Redirect to="/login" />;
+       return <Navigate replace to="/login" />;
     }
 
     return (

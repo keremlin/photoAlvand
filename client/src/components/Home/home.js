@@ -80,7 +80,6 @@ export default class Home extends Component {
             <CardUIWrapper></CardUIWrapper>
           </div>
         </section>
-        <Grows></Grows>
         <section>
           <div className="row pt-5 pb-5 bg-light">
             <div className="col-sm-12 col-xs-12">

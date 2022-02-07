@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { Router, Switch, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import './App.css';
-import './font.css'; import Header from './components/header/header';
+import './font.css'; 
+import Header from './components/header/header';
 import Home from './components/Home/home';
 import Footer from './components/Footer/footer';
 import Login from "./components/login.component";
@@ -18,6 +19,7 @@ import { clearMessage } from "./actions/message";
 import Picture from './components/picture/picture.component';
 import { history } from './helpers/history';
 import Search from './components/search/search.component';
+
 
 class App extends Component {
   constructor(props) {
@@ -55,30 +57,33 @@ class App extends Component {
     const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
 
     return (
-      <Router history={history}>
+       <BrowserRouter>
         <div className="App">
           <Header currentUser={currentUser} showModeratorBoard={showModeratorBoard} showAdminBoard={showAdminBoard}></Header>
           <div className="container-fluid">
-          <Switch>
-              <Route exact path={["/", "/home"]} component={Home} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/register" component={props => <Register {...props}/>} />
-              <Route exact path="/profile" component={Profile} />
-              <Route path="/user" component={BoardUser} />
-              <Route path="/mod" component={BoardModerator} />
-              <Route path="/admin" component={BoardAdmin} />
-              <Route path="/siteManagement" component={SiteManagement} />
-              <Route path="/picture/:pictureId" component={Picture} />
-              <Route path="/search/:categoryId" render={(props) => (
-                <Search {...props} time={(new Date()).getTime()} />
-              )} />
-            </Switch>
+     
+      
+          <Routes>
+              <Route exact path="/" element={<Home/>} />
+              <Route exact path="/login" element={<Login/>} />
+              <Route exact path="/register" element={<Register/>} />
+              <Route exact path="/profile" element={<Profile/>} />
+              <Route path="/user" element={<BoardUser/>} />
+              <Route path="/mod" element={<BoardModerator/>} />
+              <Route path="/admin" element={<BoardAdmin/>} />
+              <Route path="/siteManagement" element={<SiteManagement/>} />
+              <Route path="/picture/:pictureId" element={<Picture/>} />
+              <Route path="/search/:categoryId" element={<Search/>}/>
+             
+           </Routes>
+     
+
             <footer>
               <Footer></Footer>
             </footer>
           </div>
         </div>
-      </Router>
+        </BrowserRouter>
     );
   }
 }

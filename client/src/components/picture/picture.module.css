@@ -51,3 +51,16 @@
      margin-bottom: 15px;
     background-color: rgb(227, 239, 243);
  }
+ .picturePopupBody{
+     color:#6c757d;
+     text-align: center;
+     font-family: Yekan;
+ }
+ .picturePopupIcon{
+    color:blueviolet;
+ }
+ .picturePopupCloseButt{
+     color:white;
+     font-family: Yekan;
+     text-align: center;
+ }

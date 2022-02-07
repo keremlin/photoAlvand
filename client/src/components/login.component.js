@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Redirect } from 'react-router-dom';
+import { Navigate  } from 'react-router-dom';
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-
+import {Link} from "react-router-dom";
 import { connect } from "react-redux";
 import { login } from "../actions/auth";
 import BorderColorIcon from '@material-ui/icons/BorderColor';
@@ -78,7 +78,7 @@ class Login extends Component {
     const { isLoggedIn, message } = this.props;
 
     if (isLoggedIn) {
-      return <Redirect to="/profile" />;
+      return <Navigate replace to="/profile" />;
     }
 
     return (
@@ -132,7 +132,7 @@ class Login extends Component {
                 <span>ورود</span>
               </button>
             </div>
-            <span className="underLine" ><a href="/register"><BorderColorIcon fontSize="small"/> ثبت نام کنید</a></span>
+            <span className="underLine" ><Link to="/register" ><BorderColorIcon fontSize="small"/> ثبت نام کنید</Link></span>
             {message && (
               <div className="form-group">
                 <div className="alert alert-danger" role="alert">
@@ -148,6 +148,7 @@ class Login extends Component {
             />
           </Form>
         </div>
+        
       </div>
       <div className="col-sm-4"></div>
       </div>
