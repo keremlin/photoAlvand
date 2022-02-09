@@ -20,6 +20,9 @@ import Picture from './components/picture/picture.component';
 import { history } from './helpers/history';
 import Search from './components/search/search.component';
 
+import './i18n';
+
+
 
 class App extends Component {
   constructor(props) {

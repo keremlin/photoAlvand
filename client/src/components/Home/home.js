@@ -3,15 +3,14 @@ import CarouselUI from './../crouselUI/carouselUI';
 import CardUIWrapper from './../cardUI/cardUIwrapper'
 import GalleryUI from './../galleryUI/galleryUI';
 import H3UI from './../h3UI/h3UI';
-import CameraRollIcon from '@material-ui/icons/CameraRoll';
-import CameraEnhanceIcon from '@material-ui/icons/CameraEnhance';
-import EcoIcon from '@material-ui/icons/Eco';
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 import { Component } from 'react';
 import http from './../../http-common';
 import authHeader from "./../../services/auth-header";
 import configurationService from "./../../services/configurationService";
-import Grows from './../effects/Grows'
+import Grows from './../effects/Grows';
+
+import { Trans } from 'react-i18next';
+import { translate } from 'react-i18next';
 
 export default class Home extends Component {
   constructor(props) {
@@ -26,7 +25,7 @@ export default class Home extends Component {
       listOfPaths:[],
     };
   }
-
+  
   componentDidMount() {
     http.post('/configuration/getAllConfiguratin',{headers:authHeader()})
         .then((response)=>{
@@ -57,6 +56,7 @@ export default class Home extends Component {
     }
    }
   render() {
+    
     return (
       <>
         <section>
@@ -75,7 +75,7 @@ export default class Home extends Component {
           </div>
           <div className="row pt-5 pb-2">
             <div className="col-sm-12 col-xs-12 ">
-              <H3UI>دسته بندی محتوا</H3UI>
+              <H3UI><Trans i18nKey={'Categories'}></Trans></H3UI>
             </div>
             <CardUIWrapper></CardUIWrapper>
           </div>

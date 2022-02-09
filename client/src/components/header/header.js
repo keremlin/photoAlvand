@@ -7,7 +7,10 @@ import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import HomeIcon from '@material-ui/icons/Home';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import LockOpenIcon from '@material-ui/icons/LockOpen';
+import KeyboardHideIcon from '@material-ui/icons/KeyboardHide';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
+import i18next from 'i18next';
+import { useState } from 'react';
 import { Outlet, Link } from "react-router-dom";
 import {
     Navbar,
@@ -18,6 +21,22 @@ import {
     NavDropdown,
 } from 'react-bootstrap';
 function Header(props) {
+    const [lang, setLang] = useState("FA");
+    const changeLang = () => {
+        let currentLang = '';
+
+        if (i18next.language.startsWith('fa'))
+            currentLang = 'en';
+        else if (i18next.language.startsWith('en'))
+            currentLang = 'fa';
+
+        i18next.changeLanguage(currentLang, (err, t) => {
+            t(currentLang);
+            setLang(currentLang.toUpperCase());
+            console.log(i18next.languages);
+        });
+    }
+    
     function logOut(target) {
         target.preventDefault();
         props.dispatch(logout());
@@ -60,6 +79,7 @@ function Header(props) {
                             <FormControl type="text" placeholder="جستجو عکس" className="mr-sm-2" />
                             <Button variant="outline-info">جستجو</Button>
                         </Form>
+                        <Nav.Link onClick={changeLang}>{lang} <KeyboardHideIcon/>  </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
