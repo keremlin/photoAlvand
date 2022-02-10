@@ -154,3 +154,9 @@ border-radius: 20px 20px 0 0;
   color:rgba(255,255,255,.9);
   text-decoration: none;
 }
+.fontEn{
+  font-family: 'Oswald';
+}
+.fontEnSmall{
+  font-size:small;
+}

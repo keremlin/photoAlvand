@@ -79,7 +79,7 @@ function Header(props) {
                             <FormControl type="text" placeholder="جستجو عکس" className="mr-sm-2" />
                             <Button variant="outline-info">جستجو</Button>
                         </Form>
-                        <Nav.Link onClick={changeLang}>{lang} <KeyboardHideIcon/>  </Nav.Link>
+                        <Nav.Link  onClick={changeLang}><span className='App'>{lang}</span> <KeyboardHideIcon/>  </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

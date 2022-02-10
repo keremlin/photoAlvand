@@ -66,6 +66,7 @@
       url(./fonts/Yekan.ttf?-wwn5ej) format('truetype');
     font-weight: normal;
     font-style: normal;
+    unicode-range:U+0600-06FF;
 }
 
 
@@ -88,4 +89,53 @@
          url(./fonts/BNasim.ttf) format('truetype');
     font-weight: bold;
     font-style: normal;
+}
+
+@font-face {
+    font-family: 'Oswaldbold';
+    src: url('./fonts/Oswald-Bold.eot');
+    src: url('./fonts/Oswald-Bold.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/Oswald-Bold.woff2') format('woff2'),
+        url('./fonts/Oswald-Bold.woff') format('woff'),
+        url('./fonts/Oswald-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'OswaldStencil';
+    src: url('./fonts/OswaldStencil-Bold.eot');
+    src: url('./fonts/OswaldStencil-Bold.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/OswaldStencil-Bold.woff2') format('woff2'),
+        url('./fonts/OswaldStencil-Bold.woff') format('woff'),
+        url('./fonts/OswaldStencil-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Oswaldlight';
+    src: url('./fonts/Oswald-Light.eot');
+    src: url('./fonts/Oswald-Light.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/Oswald-Light.woff2') format('woff2'),
+        url('./fonts/Oswald-Light.woff') format('woff'),
+        url('./fonts/Oswald-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family:  'Yekan';
+    src: url('./fonts/Oswald.eot');
+    src: url('./fonts/Oswald.eot?#iefix') format('embedded-opentype'),
+        url('./fonts/Oswald.woff2') format('woff2'),
+        url('./fonts/Oswald.woff') format('woff'),
+        url('./fonts/Oswald.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+    unicode-range: U+0020-007F; 
 }
