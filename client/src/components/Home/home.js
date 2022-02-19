@@ -8,11 +8,10 @@ import http from './../../http-common';
 import authHeader from "./../../services/auth-header";
 import configurationService from "./../../services/configurationService";
 import Grows from './../effects/Grows';
+import { connect } from 'react-redux';
+import H3UIT from '../h3UI/H3UIT';
 
-import { Trans } from 'react-i18next';
-import { translate } from 'react-i18next';
-
-export default class Home extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
 
@@ -56,7 +55,7 @@ export default class Home extends Component {
     }
    }
   render() {
-    
+    let checked=true;
     return (
       <>
         <section>
@@ -75,7 +74,9 @@ export default class Home extends Component {
           </div>
           <div className="row pt-5 pb-2">
             <div className="col-sm-12 col-xs-12 ">
-              <H3UI><Trans i18nKey={'Categories'}></Trans></H3UI>
+              
+                  <H3UIT>Categories</H3UIT>
+              
             </div>
             <CardUIWrapper></CardUIWrapper>
           </div>
@@ -83,7 +84,7 @@ export default class Home extends Component {
         <section>
           <div className="row pt-5 pb-5 bg-light">
             <div className="col-sm-12 col-xs-12">
-              <H3UI>مجموعه های منتخب</H3UI>
+              <H3UIT>selections</H3UIT>
               <GalleryUI></GalleryUI>
             </div>
             <div className="col-sm-12 col-xs-12"></div>
@@ -93,3 +94,4 @@ export default class Home extends Component {
     )
   }
 }
+export default connect((state)=>state.language)(Home);

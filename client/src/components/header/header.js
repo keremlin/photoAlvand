@@ -1,4 +1,5 @@
 import React from 'react';
+import { setLanguage } from '../../actions/language';
 import './header.css';
 import ico from './dc.svg';
 import {connect} from 'react-redux';
@@ -21,8 +22,9 @@ import {
     NavDropdown,
 } from 'react-bootstrap';
 function Header(props) {
+    const { dispatch } = props;
     const [lang, setLang] = useState("FA");
-    const changeLang = () => {
+    const changeLanguage = () => {
         let currentLang = '';
 
         if (i18next.language.startsWith('fa'))
@@ -30,6 +32,7 @@ function Header(props) {
         else if (i18next.language.startsWith('en'))
             currentLang = 'fa';
 
+        dispatch(setLanguage());
         i18next.changeLanguage(currentLang, (err, t) => {
             t(currentLang);
             setLang(currentLang.toUpperCase());
@@ -79,7 +82,7 @@ function Header(props) {
                             <FormControl type="text" placeholder="جستجو عکس" className="mr-sm-2" />
                             <Button variant="outline-info">جستجو</Button>
                         </Form>
-                        <Nav.Link  onClick={changeLang}><span className='App'>{lang}</span> <KeyboardHideIcon/>  </Nav.Link>
+                        <Nav.Link  onClick={changeLanguage}><span className='App'>{lang}</span> <KeyboardHideIcon/>  </Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>
@@ -91,6 +94,7 @@ function Header(props) {
 function mapStateToProps(state) {
     const { isLoggedIn } = state.auth;
     const { message } = state.message;
+    const { language } = state.language;
     const isAdmin = (state.auth.user && state.auth.user.roles ? state.auth.user.roles.includes('ROLE_ADMIN') : false);
     return {
         isLoggedIn,

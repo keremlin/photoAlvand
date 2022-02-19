@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
-import './App.css';
+import styles from './App.css';
 import './font.css'; 
 import Header from './components/header/header';
 import Home from './components/Home/home';
@@ -61,7 +61,7 @@ class App extends Component {
 
     return (
        <BrowserRouter>
-        <div className="App">
+        <div className={(this.props.language==='en'?["App appRTL"]:"App appLTR")}>
           <Header currentUser={currentUser} showModeratorBoard={showModeratorBoard} showAdminBoard={showAdminBoard}></Header>
           <div className="container-fluid">
      
@@ -92,8 +92,10 @@ class App extends Component {
 }
 function mapStateToProps(state) {
   const { user } = state.auth;
+  const {language} =state.language;
   return {
     user,
+    language,
   };
 }
 export default connect(mapStateToProps)(App);

@@ -1,11 +1,6 @@
 import * as React from 'react';
-
-import Box from '@material-ui/core/Box';
-import Switch from '@material-ui/core/Switch';
-import Paper from '@material-ui/core/Paper';
+import HUIT from '../h3UI/HUIT';
 import Grow from '@material-ui/core/Grow';
-import Slide from '@material-ui/core/Slide';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import EcoIcon from '@material-ui/icons/Eco';
 import CameraRollIcon from '@material-ui/icons/CameraRoll';
 import CameraEnhanceIcon from '@material-ui/icons/CameraEnhance';
@@ -15,16 +10,16 @@ const icon = (
 
   <span>
     <span className="pl-5">
-      <EcoIcon style={{ fontSize: "3vw" }}></EcoIcon>کیفیت بالا
+      <EcoIcon style={{ fontSize: "3vw" }}></EcoIcon><HUIT>bestQuality</HUIT>
     </span>
     <span className="pl-5">
-      <CameraRollIcon style={{ fontSize: "3vw" }}></CameraRollIcon> قیمت مناسب
+      <CameraRollIcon style={{ fontSize: "3vw" }}></CameraRollIcon> <HUIT>goodPrice</HUIT>
     </span>
     <span className="pl-5">
-      <CameraEnhanceIcon style={{ fontSize: "3vw" }}></CameraEnhanceIcon> عکس سفارشی
+      <CameraEnhanceIcon style={{ fontSize: "3vw" }}></CameraEnhanceIcon> <HUIT>orderedPicture</HUIT>
     </span>
     <span className="pl-5">
-      <AddShoppingCartIcon style={{ fontSize: "3vw", fill: "black" }}></AddShoppingCartIcon>  تحویل سریع
+      <AddShoppingCartIcon style={{ fontSize: "3vw", fill: "black" }}></AddShoppingCartIcon>  <HUIT>expressPrepration</HUIT>
     </span>
   </span>
 

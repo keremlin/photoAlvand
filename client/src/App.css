@@ -1,3 +1,9 @@
+.appRTL{
+direction: rtl;
+}
+.appLTR{
+direction:ltr;
+}
 .App {
   text-align: center;
   font-family: Yekan;

@@ -7,12 +7,22 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
-      "Categories": "Photo Categories"
+      "Categories": "Photo Categories",
+      "selections":"Best Selections",
+      "bestQuality":"Best Quality",
+      "goodPrice":"Good Price",
+      "orderedPicture": "Ordered Picture",
+      "expressPrepration":"Express Prepration"
     }
   },
   fa: {
     translation: {
-      "Categories": "دسته بندی محتوی"
+      "Categories": "دسته بندی محتوی",
+      "selections": "مجموعه های منتخب",
+      "bestQuality":"کیفیت عالی",
+      "goodPrice" : "قیمت مناسب",
+      "orderedPicture":"عکس سفارشی",
+      "expressPrepration":"تحویل سریع"
     }
   }
 };
