@@ -64,7 +64,7 @@ export default function GalleryUI() {
               </ImageListItem>
             </Link>
           ))
-          :<span className="marginAuto"><CircularProgress color="secondary"></CircularProgress> سعی در برقراری ارتباط</span>)
+          :<span className="marginAuto"><CircularProgress color="secondary"/> سعی در برقراری ارتباط</span>)
       }
     </ImageList>
   );

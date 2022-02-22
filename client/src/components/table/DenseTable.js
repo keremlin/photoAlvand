@@ -26,9 +26,9 @@ export default function DenseTable(props) {
           fontFamily:'Yekan',textAlign:'center'
         },
       }));
-      function nextPath(path,props) {
-        props.history.push(path);
-      }
+      // function nextPath(path,props) {
+      //   props.history.push(path);
+      // }
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">

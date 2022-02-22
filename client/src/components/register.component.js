@@ -59,7 +59,7 @@ const vFnmae = (value) => {
 
 const vMobile = (value) => {
   var mob = /^0[1-9]{1}[0-9]{9}$/;
-  if (mob.test(value) == false) {
+  if (mob.test(value) === false) {
     return (
       <div className="alert alert-danger" role="alert">
        شماره موبایل را صحیح وارد کنید (09XXXXXXXX)

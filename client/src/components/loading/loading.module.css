@@ -1,0 +1,13 @@
+.loadingMinHeight{
+    min-height: 75vh;
+}
+.LoadingCenterClass{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.LoadingText{
+    color:rgb(223, 30, 94);
+
+}

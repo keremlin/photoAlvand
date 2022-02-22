@@ -1,6 +1,7 @@
 import { Grow } from '@material-ui/core';
 import { connect } from 'react-redux';
 import { Trans } from 'react-i18next';
+
 function H3UIT(props) {
     let checked = true;
     return (
