@@ -8,11 +8,13 @@ export default function Slider(props) {
   useEffect(() => {
     if(props.isLoaded)
       setTimeout(() => SetTriger(true), props.timeOut); 
+      else
+      SetTriger(false);
   });
   return (
     <>
       <Loading show={!triger} />
-      <Slide  direction="up" in={triger} timeout={props.sliderTime} mountOnEnter unmountOnExit>
+      <Slide  direction="up" in={triger} timeout={props.sliderTime} mountOnEnter >
         <div>
           {props.children}
         </div>

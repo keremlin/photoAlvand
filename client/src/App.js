@@ -42,6 +42,7 @@ class App extends Component {
 
   componentDidMount() {
     const user = this.props.user;
+    console.log("On app first time : " +this.props.language);
 
     if (user) {
       this.setState({
@@ -61,7 +62,7 @@ class App extends Component {
 
     return (
        <BrowserRouter>
-        <div className={(this.props.language==='en'?["App appRTL"]:"App appLTR")}>
+        <div className={(this.props.language!==undefined && this.props.language==="en"?"App appLTR":"App appRTL")}>
           <Header currentUser={currentUser} showModeratorBoard={showModeratorBoard} showAdminBoard={showAdminBoard}></Header>
           <div className="container-fluid">
      

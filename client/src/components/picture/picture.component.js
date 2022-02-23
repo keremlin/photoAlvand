@@ -18,6 +18,7 @@ import Filepreview from './../Admin/filePreview.component';
 import Popup from '../popup/Popup';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
+import Slider from '../effects/Slider';
 
 export default function Picture(props) {
     const [file, setFile] = useState({ data: { formname: "arash" } });
@@ -31,6 +32,7 @@ export default function Picture(props) {
 
 
     useEffect( () => {
+        window.scrollTo(0, 0);
         console.log("picture>useEffect>called");
         if (isLoaded === false)
             http.get('/file/fileInfo/'+pictureId,
@@ -67,8 +69,10 @@ export default function Picture(props) {
     }
     var dateTime=date2convert(new Date("2021-05-13T12:45:45.000+00:00"))+"";
     return (
-        <>
-            <div className={"row " + styles.bg}>
+        <div className={styles.bg}>
+        <Slider isLoaded={true} timeOut={500} sliderTime={700}>
+        
+            <div className={"row"}>
                 <div className="col-sm-1 col-sx-0"></div>
                 <div className={"col-sm-4 col-sx-12 " + styles.pictureWrap}>
                     <div className="row">
@@ -145,9 +149,10 @@ export default function Picture(props) {
 
                 <div className="col-sm-1 col-sx-0"></div>
             </div>
+            </Slider>
             <div className="row">
                 <div className="col-sm-12"></div>
             </div>
-        </>
+        </div>
     );
 }

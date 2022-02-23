@@ -4,6 +4,7 @@ import {useParams} from 'react-router-dom';
 import http from './../../http-common';
 import authHeader from "./../../services/auth-header";
 import { Link } from 'react-router-dom';
+import Slider from "../effects/Slider";
 
 
  function Search() {
@@ -11,6 +12,7 @@ import { Link } from 'react-router-dom';
     const[isLoaded,setIsLoaded]=useState(false);
     const [file, setFile] = useState({ data: { formname: "arash" } });
     useEffect(()  => {
+        window.scrollTo(0, 0);
         if (isLoaded === false )
              http.get('/search/byCategory/'+categoryId,
                 { headers: authHeader() })
@@ -25,7 +27,9 @@ import { Link } from 'react-router-dom';
                 });
     }, [categoryId,isLoaded,file]);
         return (
-        <>
+        
+        <Slider isLoaded={true} timeOut={500} sliderTime={700}>
+         <>   
         <div className="row">
             <div className="col-sm-12">
                 <p>جستجو در گروه : 
@@ -56,7 +60,9 @@ import { Link } from 'react-router-dom';
             }
                
             </CardColumns>
-        </>
+            </>
+            </Slider>
+        
     );
 }
 export default (Search);

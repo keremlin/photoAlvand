@@ -11,6 +11,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Popup from './popup/Popup';
 import UserBox from './Box/UserBox'
 import MoneyBox from "./Box/MoneyBox";
+import Slider from './effects/Slider';
 
 class Profile extends Component {
   constructor() {
@@ -74,6 +75,7 @@ class Profile extends Component {
     }
 
     return (
+      <Slider isLoaded={true} timeOut={500} sliderTime={700}>
       <div className="container profile-bg">
          <div className="row">
           <div className="col-sm-12">
@@ -124,6 +126,7 @@ class Profile extends Component {
           </div>
         </div>
       </div>
+      </Slider>
     );
   }
 }
