@@ -67,7 +67,7 @@ class Home extends Component {
 
     return (
       <>
-        <Slider isLoaded={this.state.carouselIsLoaded} timeOut={2000} sliderTime={700} key={this.props.language}>
+        <Slider isLoaded={this.state.carouselIsLoaded} timeOut={1000} sliderTime={700} key={this.props.language}>
 
           <section >
             <div className="row">

@@ -12,6 +12,8 @@ It uses :
     - i18next
     - react-router
     - Java backend
+# Demo
+<a href="http://photoalvand.com/">Demo Website of PhotoAlvand<a>
 
 ## Internationalization with i18next using Redux
 I18next is an internationalization-framework written in and for JavaScript. There are several ways to use this framework. In this project, we use a file-based approach. we have i18n.js file in the root of the project that initiate the language support. For now, only two languages is added (FA, EN) but you can add more languages. In the components we used <trans> tag to find the key properly. In Redux store we put current language field. There is a language changer in header that changes the value of language in the store.
@@ -20,12 +22,12 @@ So in real-time all text will translate to the target language.
 ## Redux
 The project uses redux for public variables that all components and services need to use them. For local variables we use props. The store includes user data, current language and system messages.
 We used createStore() to setup the store. Also there are Reducers for managing the state. Each component that want to use the state should include the state in props.
-# Effects and Animations
+## Effects and Animations
 MUi is used to component transitions. We used slider and fade effects in this project. You can find out more about this in this link <a href="https://mui.com/components/transitions/"> Transitions </a>. Slider component is created to handle effects of component that handle all actions. In this case we show "loading" until underlying component is loaded then we do the effect.
-# Carousel UI
+## Carousel UI
 
-# OnLoad() Images
+## OnLoad() Images
 
-# Form validation
+##s Form validation
 
 
