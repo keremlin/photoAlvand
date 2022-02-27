@@ -14,7 +14,7 @@ export default function Slider(props) {
   return (
     <>
       <Loading show={!triger} />
-      <Slide  direction="up" in={triger} timeout={props.sliderTime} mountOnEnter >
+      <Slide  direction="left" in={triger} timeout={props.sliderTime} mountOnEnter >
         <div>
           {props.children}
         </div>

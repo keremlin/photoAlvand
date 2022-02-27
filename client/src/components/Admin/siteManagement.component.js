@@ -81,7 +81,14 @@ export default class SiteManagement extends Component {
             console.log(respons.data);
         });
     }
-    onIndexChange=()=>{return;}
+    onIndexChange = (key, value) => {
+        this.addConfigToState(key, value);
+    }
+    addConfigToState = (key, value) => {
+        const configTemp = this.state.config;
+        configTemp[this.findID(key)].configValue = value;
+        this.setState({ config: configTemp });
+    }
 
     render(){
     return (
@@ -113,11 +120,11 @@ export default class SiteManagement extends Component {
                             <Form.Group controlId="formBasicSelect">
                                 <Form.Label>تنظیمات گروه ها</Form.Label>
                                 <Row className="g-۵">
-                                    <Selector  configValue={this.findValue("indexFirstGroupNumber")} title="گروه ۱" datas={this.state.listCategory}></Selector>
-                                    <Selector  configValue={this.findValue("indexSecondGroupNumber")} title="گروه ۲" datas={this.state.listCategory}></Selector>
-                                    <Selector  configValue={this.findValue("indexThirdGroupNumber")} title="گروه ۳" datas={this.state.listCategory}></Selector>
-                                    <Selector  configValue={this.findValue("indexFourthGroupNumber")} title="گروه ۴" datas={this.state.listCategory}></Selector>
-                                    <Selector  configValue={this.findValue("indexfifthGroupNumber")} title="گروه ۵" datas={this.state.listCategory}></Selector>
+                                    <Selector  configValue={this.findValue("indexFirstGroupNumber")} configKey={"indexFirstGroupNumber"} title="گروه ۱" datas={this.state.listCategory} onChangeIndex={this.onIndexChange}></Selector>
+                                    <Selector  configValue={this.findValue("indexSecondGroupNumber")} configKey={"indexSecondGroupNumber"} title="گروه ۲" datas={this.state.listCategory} onChangeIndex={this.onIndexChange}></Selector>
+                                    <Selector  configValue={this.findValue("indexThirdGroupNumber")} configKey={"indexThirdGroupNumber"} title="گروه ۳" datas={this.state.listCategory} onChangeIndex={this.onIndexChange}></Selector>
+                                    <Selector  configValue={this.findValue("indexFourthGroupNumber")} configKey={"indexFourthGroupNumber"} title="گروه ۴" datas={this.state.listCategory} onChangeIndex={this.onIndexChange}></Selector>
+                                    <Selector  configValue={this.findValue("indexfifthGroupNumber")} configKey={"indexfifthGroupNumber"} title="گروه ۵" datas={this.state.listCategory} onChangeIndex={this.onIndexChange}></Selector>
                                 </Row>
                             </Form.Group>
                             <Divider />
