@@ -12,7 +12,8 @@ import KeyboardHideIcon from '@material-ui/icons/KeyboardHide';
 import SettingsApplicationsIcon from '@material-ui/icons/SettingsApplications';
 import i18next from 'i18next';
 import HUIT from '../h3UI/HUIT';
-import { useState } from 'react';
+import http from './../../http-common';
+import { useState, useEffect} from 'react';
 import { Outlet, Link } from "react-router-dom";
 import {
     Navbar,
@@ -25,6 +26,19 @@ import {
 function Header(props) {
     const { dispatch } = props;
     const [lang, setLang] = useState("FA");
+    const [listOfCategories,setCategories]=useState([" "]);
+    const [loaded,setLoaded]=useState(false);
+    useEffect(() => {
+        console.log("*^^^^^^^^^^^^^^**********^^^^^^^^^^^");
+            http.get('/category/getAllCategories')
+                .then((response) => {
+                    setCategories(response.data);
+                    setLoaded(true);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+    },[loaded]);
     const changeLanguage = () => {
         let currentLang = '';
 
@@ -67,13 +81,10 @@ function Header(props) {
                             <Nav.Link className="nav-link" href="/logout" onClick={logOut}><LockOpenIcon fontSize="small" /> <HUIT>logout</HUIT></Nav.Link>
                         }
                         <NavDropdown title={i18next.t('gallery')} id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">لیگ برتر</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">لیگ دسته یک</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">جام جهانی</NavDropdown.Item>
+                            {(loaded===true ? listOfCategories.map((item, index) => (
+                                <NavDropdown.Item href={"/search/"+item.id}>{item.name}</NavDropdown.Item>
+                            )) : <></>)}
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">جام ملت های آسیا</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.4">جام ملت های آسیا</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.4">جام ملت های آسیا</NavDropdown.Item>
                         </NavDropdown>
                         <Nav.Link href="#features2"><HUIT>collections</HUIT></Nav.Link>
                         {props.isAdmin ?
