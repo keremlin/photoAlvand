@@ -82,11 +82,11 @@ function Header(props) {
                         }
                         <NavDropdown title={i18next.t('gallery')} id="collasible-nav-dropdown">
                             {(loaded===true ? listOfCategories.map((item, index) => (
-                                <NavDropdown.Item href={"/search/"+item.id}>{item.name}</NavDropdown.Item>
+                                <NavDropdown.Item href={"/search/"+item.id} key={index}>{item.name}</NavDropdown.Item>
                             )) : <></>)}
                             <NavDropdown.Divider />
                         </NavDropdown>
-                        <Nav.Link href="#features2"><HUIT>collections</HUIT></Nav.Link>
+                        <Nav.Link href="/categories"><HUIT>collections</HUIT></Nav.Link>
                         {props.isAdmin ?
                             <Nav.Link><Link  className='react-router-link' to="/admin"><SettingsApplicationsIcon fontSize="small" /> <HUIT>admin</HUIT> </Link> </Nav.Link> : <></>}
 

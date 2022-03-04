@@ -9,12 +9,15 @@ import authHeader from "./../../services/auth-header";
 import { Link } from 'react-router-dom';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-export default function GalleryUI() {
+export default function GalleryUI(props) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [category, setCategory] = useState(null);
   useEffect(() => {
+    let categoryUrl='/category/getRandomCategory/12';
+    if( props.url!==undefined && props.url!=="")
+      categoryUrl=props.url;
     if (!isLoaded)
-      http.get('/category/getRandomCategory/12',
+      http.get(categoryUrl,
         { headers: authHeader() })
         .then((response) => {
           if (response.data != null) {

@@ -87,7 +87,7 @@ class Home extends Component {
               <div className="col-sm-12 col-xs-12 ">
                 <H3UIT>Categories</H3UIT>
               </div>
-              <CardUIWrapper></CardUIWrapper>
+              <CardUIWrapper config={this.state.config}/>
             </div>
           </section>
 

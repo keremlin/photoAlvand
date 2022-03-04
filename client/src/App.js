@@ -21,6 +21,7 @@ import { history } from './helpers/history';
 import Search from './components/search/search.component';
 
 import './i18n';
+import Categories from './components/categories/categories.component';
 
 
 
@@ -78,6 +79,7 @@ class App extends Component {
               <Route path="/siteManagement" element={<SiteManagement/>} />
               <Route path="/picture/:pictureId" element={<Picture/>} />
               <Route path="/search/:categoryId" element={<Search/>}/>
+              <Route path="/categories" element={<Categories/>}/>
              
            </Routes>
      
