@@ -6,6 +6,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ShareIcon from '@material-ui/icons/Share';
+import DeleteIcon from '@material-ui/icons/Delete';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 import CreditCardIcon from '@material-ui/icons/CreditCard';
 import IconButton from '@material-ui/core/IconButton';
@@ -67,6 +68,16 @@ export default function Picture(props) {
                 console.log(err);
             })
     }
+    async function  handleDeletePicture(id) {
+        console.log('Delete clicked ' + id);
+        await http.get('/file/delete/' + id, { headers: authHeader() })
+        .then(()=>{
+            console.log('Deleted : '+id);
+        })
+        .catch((ex)=>{
+            console.log('error on delete file :'+ex.message);
+        })
+    }
     var dateTime=date2convert(new Date("2021-05-13T12:45:45.000+00:00"))+"";
     return (
         <div className={styles.bg}>
@@ -117,11 +128,14 @@ export default function Picture(props) {
                                 <IconButton color="default" aria-label="add an alarm">
                                     <AlarmIcon />
                                 </IconButton>
-                                <IconButton color="secondary" aria-label="add an alarm">
+                                <IconButton color="secondary" aria-label="Fav">
                                     <FavoriteBorderIcon />
                                 </IconButton>
-                                <IconButton color="primary" aria-label="add an alarm">
+                                <IconButton color="primary" aria-label="Share Icon">
                                     <ShareIcon />
+                                </IconButton>
+                                <IconButton color="default" aria-label="Delete Icon" onClick={()=>handleDeletePicture(file.data.id)}>
+                                    <DeleteIcon />
                                 </IconButton>
                             </div>
 

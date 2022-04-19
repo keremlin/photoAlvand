@@ -99,6 +99,21 @@ export default class BoardAdmin extends Component {
     );
     if (isSuccefullySaved) this.onFileListChange();
   }
+
+  onDeleteFile = async (id) => {
+    await http.get('/file/delete/' + id, { headers: authHeader() })
+      .then((response) => {
+        console.log("File deleted : " + id + response.data);
+        //TODO:show the error to user if file not deleted the REST return false
+        if (response.data === true)
+          this.onFileListChange();
+        return true;
+      })
+      .catch((ex) => {
+        console.log("Error on DeleteFile" + ex.message)
+        return false;
+      });
+  } 
   render() {
     return (
       <>
@@ -110,7 +125,7 @@ export default class BoardAdmin extends Component {
               <div className={styles.cardTitle}>بارگزاری فایل</div>
               <UploadFiles onFileListChange={this.onFileListChange}></UploadFiles>
               <div className={styles.chips}>
-                <FileList onIndexChange={this.onIndexChange} list={this.state.fileList}></FileList>
+                <FileList onIndexChange={this.onIndexChange} onDeleteFileClicked={this.onDeleteFile} list={this.state.fileList}></FileList>
               </div>
             </Card>
           </div>

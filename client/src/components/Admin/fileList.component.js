@@ -36,29 +36,33 @@ export default function CheckboxListSecondary(props) {
     setSelected(index);
     props.onIndexChange(index,id);
   }
+  const handleDelete=(id)=>()=>{
+    props.onDeleteFileClicked(id);
+  }
 
   return (
     <List dense className={classes.root}>
-      {props.list.map((value,index) => {
+      {props.list.map((value, index) => {
         const labelId = `checkbox-list-secondary-label-${index}`;
         return (
-            <div key={index} className={selected===index? classes.listItem:null} onClick={handleClick(index,value.id)} >
-          <ListItem button>
-            <ListItemAvatar>
-              <Avatar
-                className={classes.large}
-                alt={`Avatar n°${index + 1}`}
-                src={value.url}
-              />
-            </ListItemAvatar>
-            <ListItemText id={labelId} primary={value.name} />
-           
-            <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="delete">
-                      <DeleteIcon />
-                    </IconButton>
-                  </ListItemSecondaryAction>
-          </ListItem></div>
+          <div key={index} className={selected === index ? classes.listItem : null} onClick={handleClick(index, value.id)} >
+            <ListItem button>
+              <ListItemAvatar>
+                <Avatar
+                  className={classes.large}
+                  alt={`Avatar n°${index + 1}`}
+                  src={value.url}
+                />
+              </ListItemAvatar>
+              <ListItemText id={labelId} primary={value.name} />
+
+              <ListItemSecondaryAction>
+                <IconButton edge="end" aria-label="delete" onClick={handleDelete(value.id)}>
+                  <DeleteIcon  />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem>
+          </div>
         );
       })}
     </List>
