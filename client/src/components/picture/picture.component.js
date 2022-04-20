@@ -20,21 +20,30 @@ import Popup from '../popup/Popup';
 import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
 import Slider from '../effects/Slider';
+import { connect } from "react-redux";
 
-export default function Picture(props) {
-    const [file, setFile] = useState({ data: { formname: "arash" } });
-    const [isLoaded, setIsLoaded] = useState(false);
-    const {pictureId} =useParams();
+ function Picture(props) {
+     const [file, setFile] = useState({ data: { formname: "arash" } });
+     const [isLoaded, setIsLoaded] = useState(false);
+     const { pictureId } = useParams();
 
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShowModal = () => setShow(true);
-    const [order,setOrder]=useState({message:"Message"});
+     const [show, setShow] = useState(false);
+     const handleClose = () => setShow(false);
+     const handleShowModal = () => setShow(true);
+     const [order, setOrder] = useState({ message: "Message" });
+
+     const [showException, setShowException] = useState(false);
+     const handleCloseException = () => setShowException(false);
+     const handleShowExceptionModal = () => setShowException(true);
+     const [exception, setException] = useState({ message: "Message" });
+
+
+    
 
 
     useEffect( () => {
         window.scrollTo(0, 0);
-        console.log("picture>useEffect>called");
+        console.log("picture>useEffect>called ");
         if (isLoaded === false)
             http.get('/file/fileInfo/'+pictureId,
                 { headers: authHeader() })
@@ -44,15 +53,11 @@ export default function Picture(props) {
                         const newData = { data: response.data };
                         setFile(newData);
                         setIsLoaded(true);
-                        
                     }
-
                 }).catch(function (err) {
                     console.log(err);
                 });
-                
-                console.log(isLoaded);
-                
+                console.log(isLoaded);   
     });
     function addToKart(){
         console.log("addToKart clicked");
@@ -68,16 +73,27 @@ export default function Picture(props) {
                 console.log(err);
             })
     }
-    async function  handleDeletePicture(id) {
-        console.log('Delete clicked ' + id);
-        await http.get('/file/delete/' + id, { headers: authHeader() })
-        .then(()=>{
-            console.log('Deleted : '+id);
-        })
-        .catch((ex)=>{
-            console.log('error on delete file :'+ex.message);
-        })
-    }
+     async function handleDeletePicture(id) {
+         console.log('Delete clicked ' + id);
+         await http.get('/file/delete/' + id, { headers: authHeader() })
+             .then((response) => {
+                 console.log('Deleted : ' + id + response.data);
+                 if(response.data===false){
+                     setException({message:'این عکس به یک مشتری فروخته شده و نمی توان تا تمام شدن فرایند آن را پاک کرد.'});
+                     handleShowExceptionModal();
+                 }
+             })
+             .catch((ex) => {
+                 console.log('error on delete file :' + ex.message);
+             })
+     }
+     function checkIfAdminLoggedIn() {
+         return (
+             typeof props.user !== "undefined" &&
+                 props.user !== null &&
+                 props.user.username === 'admin'
+                 ? true : false);
+     }
     var dateTime=date2convert(new Date("2021-05-13T12:45:45.000+00:00"))+"";
     return (
         <div className={styles.bg}>
@@ -122,28 +138,30 @@ export default function Picture(props) {
                             
                         </div>
                     </div>
-                    <div className="row">
-                        <div className={"col-sx-12 "+styles.title}>
-                            <div className={ styles.leftAlign}>
-                                <IconButton color="default" aria-label="add an alarm">
-                                    <AlarmIcon />
-                                </IconButton>
-                                <IconButton color="secondary" aria-label="Fav">
-                                    <FavoriteBorderIcon />
-                                </IconButton>
-                                <IconButton color="primary" aria-label="Share Icon">
-                                    <ShareIcon />
-                                </IconButton>
-                                <IconButton color="default" aria-label="Delete Icon" onClick={()=>handleDeletePicture(file.data.id)}>
-                                    <DeleteIcon />
-                                </IconButton>
-                            </div>
+                        <div className="row">
+                            <div className={"col-sx-12 " + styles.title}>
+                                <div className={styles.leftAlign}>
+                                    <IconButton color="default" aria-label="add an alarm">
+                                        <AlarmIcon />
+                                    </IconButton>
+                                    <IconButton color="secondary" aria-label="Fav">
+                                        <FavoriteBorderIcon />
+                                    </IconButton>
+                                    <IconButton color="primary" aria-label="Share Icon">
+                                        <ShareIcon />
+                                    </IconButton>
+                                    {(checkIfAdminLoggedIn() ?
+                                        <IconButton color="default" aria-label="Delete Icon" onClick={() => handleDeletePicture(file.data.id)}>
+                                            <DeleteIcon />
+                                        </IconButton>
+                                        : <></>)}
+                                </div>
 
+                            </div>
+                            <div className={"col-sx-12"}>
+                                <div className={styles.price}>قیمت : {file.data.formprice + " "}تومان</div>
+                            </div>
                         </div>
-                        <div className={"col-sx-12"}>
-                            <div className={styles.price}>قیمت : {file.data.formprice+" "}تومان</div>
-                        </div>
-                    </div>
                 </div>
                 <div className={"col-sx-12 col-sm-6 " + styles.pictureWrap}>
                     <Filepreview src={file.data.filePath}></Filepreview>
@@ -161,6 +179,15 @@ export default function Picture(props) {
                 </Popup>
                 :<></>)}
 
+                {(showException?
+                <Popup show={showException} heading={""} 
+                    body={<div className={styles.picturePopupBody}><CheckCircleOutlineIcon className={styles.picturePopupIcon}></CheckCircleOutlineIcon> {exception.message}</div>}
+                    close={<span className={styles.picturePopupCloseButt}><OpenInBrowserIcon></OpenInBrowserIcon> متوجه شدم</span>} 
+                    handleClose={handleCloseException} 
+                >
+                </Popup>
+                :<></>)}
+
                 <div className="col-sm-1 col-sx-0"></div>
             </div>
             </Slider>
@@ -169,4 +196,12 @@ export default function Picture(props) {
             </div>
         </div>
     );
+
 }
+function mapStateToProps(state) {
+    const { user } = state.auth;
+    return {
+      user,
+    };
+}
+export default connect(mapStateToProps)(Picture);
