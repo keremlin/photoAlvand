@@ -40,7 +40,7 @@ export default function GalleryUI(props) {
     <ImageList variant="masonry" cols={colsNumber} gap={2} >
       {
         (isLoaded ?
-          category.map((item, key) => (
+          category.map((item, key) => (typeof item !== "undefined" && item !== null?
             <Link key={key} to={"/search/" + item.category.id}>
               <ImageListItem >
                 <img
@@ -66,7 +66,7 @@ export default function GalleryUI(props) {
                 />
               </ImageListItem>
             </Link>
-          ))
+          :<></>))
           :<span className="marginAuto"><CircularProgress color="secondary"/> سعی در برقراری ارتباط</span>)
       }
     </ImageList>

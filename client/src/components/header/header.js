@@ -82,7 +82,7 @@ function Header(props) {
                         }
                         <NavDropdown title={i18next.t('gallery')} id="collasible-nav-dropdown">
                             {(loaded===true ? listOfCategories.map((item, index) => (
-                                <NavDropdown.Item href={"/search/"+item.id} key={index}>{item.name}</NavDropdown.Item>
+                                (typeof item !== "undefined" && item !== null?<NavDropdown.Item href={"/search/"+item.id} key={index}>{item.name}</NavDropdown.Item>:<></>)
                             )) : <></>)}
                             <NavDropdown.Divider />
                         </NavDropdown>
