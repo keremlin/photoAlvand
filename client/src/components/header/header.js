@@ -46,6 +46,8 @@ function Header(props) {
             currentLang = 'en';
         else if (i18next.language.startsWith('en'))
             currentLang = 'fa';
+        else
+            currentLang='en';
 
         dispatch(setLanguage());
         i18next.changeLanguage(currentLang, (err, t) => {

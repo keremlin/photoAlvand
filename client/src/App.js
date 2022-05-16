@@ -34,6 +34,7 @@ class App extends Component {
       showModeratorBoard: false,
       showAdminBoard: false,
       currentUser: undefined,
+      lang:"fa",
     };
 
     history.listen((location) => {
@@ -42,6 +43,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    
     const user = this.props.user;
     console.log("On app first time : " +this.props.language);
 
@@ -53,7 +55,11 @@ class App extends Component {
       });
     }
   }
-
+  componentDidUpdate(){
+    if(this.state.lang!==this.props.language)
+    if (typeof this.props.language !== "undefined" && this.props.language !== null)
+      this.setState({ lang: this.props.language });
+  }
   logOut() {
     this.props.dispatch(logout());
   }
@@ -63,7 +69,7 @@ class App extends Component {
 
     return (
        <BrowserRouter>
-        <div className={(this.props.language!==undefined && this.props.language==="en"?"App appLTR":"App appRTL")}>
+        <div className={( (this.state.lang.includes("fa")||this.state.lang.includes("FA"))?"App appRTL":"App appLTR")}>
           <Header currentUser={currentUser} showModeratorBoard={showModeratorBoard} showAdminBoard={showAdminBoard}></Header>
           <div className="container-fluid">
      

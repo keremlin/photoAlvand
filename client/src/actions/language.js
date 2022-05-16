@@ -1,9 +1,8 @@
 import { LANGUAGE_EN, LANGUAGE_FA } from "./types";
-import {store} from './../store';
+import { store } from './../store';
 
 export const setLanguage = () => {
-  console.log(store.getState().language);
-  if (store.getState().language.language === 'fa') return ({
+  if (store.getState().language.language === 'fa' || typeof store.getState().language.language === "undefined") return ({
     type: LANGUAGE_EN,
     payload: 'en',
   })

@@ -21,6 +21,7 @@ import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
 import OpenInBrowserIcon from '@material-ui/icons/OpenInBrowser';
 import Slider from '../effects/Slider';
 import { connect } from "react-redux";
+import { useNavigate } from 'react-router-dom'
 
  function Picture(props) {
      const [file, setFile] = useState({ data: { formname: "arash" } });
@@ -33,10 +34,10 @@ import { connect } from "react-redux";
      const [order, setOrder] = useState({ message: "Message" });
 
      const [showException, setShowException] = useState(false);
-     const handleCloseException = () => setShowException(false);
+     const handleCloseException = () =>{ setShowException(false);a(-1);}
      const handleShowExceptionModal = () => setShowException(true);
      const [exception, setException] = useState({ message: "Message" });
-
+const a=useNavigate();
 
     
 
@@ -74,6 +75,7 @@ import { connect } from "react-redux";
             })
     }
      async function handleDeletePicture(id) {
+        
          console.log('Delete clicked ' + id);
          await http.get('/file/delete/' + id, { headers: authHeader() })
              .then((response) => {
@@ -81,6 +83,10 @@ import { connect } from "react-redux";
                  if(response.data===false){
                      setException({message:'این عکس به یک مشتری فروخته شده و نمی توان تا تمام شدن فرایند آن را پاک کرد.'});
                      handleShowExceptionModal();
+                 }
+                 else{
+                    setException({message:'عکس پاک شد'});
+                    handleShowExceptionModal();
                  }
              })
              .catch((ex) => {
