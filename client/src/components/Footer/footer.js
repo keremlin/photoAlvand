@@ -52,7 +52,7 @@ export default function Footer() {
                 </div>
                 <div className="row ">
                     <div className="col-sm-12 col-xs-12">
-                    Copyright 2020 PhotoAlvand<CopyrightIcon></CopyrightIcon> 
+                    Copyright 2021 Photo Alvand<CopyrightIcon></CopyrightIcon> 
               </div>
                 </div>
             </div>
